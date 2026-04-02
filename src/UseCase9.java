@@ -5,24 +5,9 @@ import java.util.stream.Collectors;
 
 public class UseCase9 {
     public static void main(String[] args) {
-        System.out.println("=== Train Consist Management App ===");
-
-        List<String> bogies = Arrays.asList(
-            "Sleeper", "AC Chair", "First Class",
-            "Rectangular Goods", "Cylindrical Goods", "Sleeper", "AC Chair"
-        );
-
+        List<String> bogies = Arrays.asList("Sleeper", "Goods", "Sleeper");
         Map<String, List<String>> grouped = bogies.stream()
-            .collect(Collectors.groupingBy(b -> {
-                if (b.equals("Sleeper") || b.equals("AC Chair") || b.equals("First Class"))
-                    return "Passenger";
-                else
-                    return "Goods";
-            }));
-
-        System.out.println("Grouped Bogies:");
-        for (Map.Entry<String, List<String>> entry : grouped.entrySet()) {
-            System.out.println("  " + entry.getKey() + ": " + entry.getValue());
-        }
+            .collect(Collectors.groupingBy(b -> b.equals("Goods") ? "Goods" : "Passenger"));
+        System.out.println("Grouped: " + grouped);
     }
 }
